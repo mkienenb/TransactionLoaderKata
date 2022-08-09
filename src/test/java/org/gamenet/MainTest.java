@@ -2,11 +2,11 @@ package org.gamenet;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class MainTest {
     @Test
-    public void applesauce() {
-        return;
+    void applesauce() {
+        fail();
     }
 }
