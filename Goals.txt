@@ -13,5 +13,6 @@ x create project
 x build works
 x run it
 X put it under version control
-- test works
+x test works
 - test exercises the code
+- remove generated warnings
