@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 class MainTest {
     @Test
-    void spicyApplesauce() {
+    void specialApplesauce() {
         fail();
     }
 }
