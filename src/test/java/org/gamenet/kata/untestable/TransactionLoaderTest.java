@@ -8,23 +8,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TransactionLoaderTest {
 
-    @BeforeEach
-    void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
-    }
-
-    @Test
-    void init() {
-        fail();
-    }
-
-    @Test
-    void load() {
-        fail();
-    }
 
     @Test
     void applesauce() {
