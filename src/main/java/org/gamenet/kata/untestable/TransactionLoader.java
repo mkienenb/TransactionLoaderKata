@@ -17,9 +17,9 @@ public class TransactionLoader {
             while(reader.hasNext()) {
                 if (reader.next() == XMLStreamConstants.START_ELEMENT) {
                     if ("items".equals(reader.getLocalName())) {
-                        includeItems = "1".equals(reader.getTextCharacters());
+                        includeItems = true;
                     } else if ("cancelled".equals(reader.getLocalName())) {
-                        includeCancelled = "1".equals(reader.getTextCharacters());
+                        includeCancelled = true;
                     }
                 }
             }
