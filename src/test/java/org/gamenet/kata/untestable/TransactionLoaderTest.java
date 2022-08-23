@@ -9,7 +9,7 @@ class TransactionLoaderTest {
 
 
     @Test
-    void applesauce() {
+    void shouldNoticeItemsAndNoCancelledInXmlStream() {
         TransactionLoader tl = new TransactionLoader();
         String xml_string = "<items/>\n";
 
