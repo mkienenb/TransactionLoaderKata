@@ -9,4 +9,9 @@ class MainTest {
     void specialApplesauce() {
         fail();
     }
+
+    @Test
+    void canCallIntoRealCode() {
+        fail();
+    }
 }
