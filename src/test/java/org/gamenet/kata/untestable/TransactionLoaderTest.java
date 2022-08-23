@@ -25,4 +25,9 @@ class TransactionLoaderTest {
     void load() {
         fail();
     }
+
+    @Test
+    void applesauce() {
+        TransactionLoader tl = new TransactionLoader();
+    }
 }
