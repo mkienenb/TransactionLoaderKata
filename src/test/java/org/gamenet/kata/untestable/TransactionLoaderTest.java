@@ -8,5 +8,6 @@ class TransactionLoaderTest {
     @Test
     void applesauce() {
         TransactionLoader tl = new TransactionLoader();
+        tl.init("<xxxx/>");
     }
 }
