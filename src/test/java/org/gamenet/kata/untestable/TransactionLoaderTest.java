@@ -1,6 +1,12 @@
 package org.gamenet.kata.untestable;
 
+import org.approvaltests.Approvals;
 import org.junit.jupiter.api.Test;
+
+import javax.xml.stream.XMLStreamException;
+import java.io.ByteArrayOutputStream;
+import java.io.UnsupportedEncodingException;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -27,5 +33,13 @@ class TransactionLoaderTest {
 
         assertFalse(tl.includeItems);
         assertTrue(tl.includeCancelled);
+    }
+
+    @Test
+    void testApplesauce() throws XMLStreamException, SQLException, UnsupportedEncodingException {
+        TransactionLoader tl = new TransactionLoader();
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        tl.applesauce(os);
+        Approvals.verify(os.toString());
     }
 }
