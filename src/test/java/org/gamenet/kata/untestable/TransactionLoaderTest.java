@@ -18,4 +18,14 @@ class TransactionLoaderTest {
         assertTrue(tl.includeItems);
         assertFalse(tl.includeCancelled);
     }
+
+    @Test
+    void shouldNoticeCancelledAndNoItemsInXmlStream() {
+        TransactionLoader tl = new TransactionLoader();
+        String xml_string = "<cancelled/>\n";
+        tl.init(xml_string);
+
+        assertFalse(tl.includeItems);
+        assertTrue(tl.includeCancelled);
+    }
 }
