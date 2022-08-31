@@ -12,6 +12,7 @@ repositories {
 
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testImplementation("com.approvaltests:approvaltests:18.0.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
