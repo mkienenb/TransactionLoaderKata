@@ -66,9 +66,7 @@ public class TransactionLoader {
                     writer.writeCharacters(crs.getString(1));
                     writer.writeEndElement();
                 }
-                ps = tConn.prepareStatement("select name, category from order_item where order_id = ?");
-                ps.setInt(1, rs.getInt(2));
-                rs2 = ps.executeQuery();
+                rs2 = getOrderItemResultSet_andStuff(tConn, rs);
                 if (includeItems) {
                     while (rs2.next()) {
                         writer.writeStartElement("i");
@@ -90,6 +88,15 @@ public class TransactionLoader {
         writer.writeEndDocument();
         writer.close();
         return os.toString("utf-8");
+    }
+
+    private ResultSet getOrderItemResultSet_andStuff(Connection tConn, ResultSet rs) throws SQLException {
+        ResultSet rs2;
+        PreparedStatement ps;
+        ps = tConn.prepareStatement("select name, category from order_item where order_id = ?");
+        ps.setInt(1, rs.getInt(2));
+        rs2 = ps.executeQuery();
+        return rs2;
     }
 
     private ResultSet getCustomerResultSet_AndStuff(Connection tConn) throws SQLException {
