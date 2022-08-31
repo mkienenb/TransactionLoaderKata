@@ -48,11 +48,8 @@ public class TransactionLoader {
         writer.writeStartElement("transactions");
         try (Connection tConn = getConnection("trandb");
              Connection cConn = getConnection("custdb")) {
-            PreparedStatement ps = tConn.prepareStatement("select customer_id, order_id, price, status, from transaction where status != 'cancelled'");
-            if (includeCancelled) {
-                ps = tConn.prepareStatement("select customer_id, order_id, price, status, from transaction");
-            }
-            ResultSet rs = ps.executeQuery();
+            ResultSet rs = getCustomerResultSet_AndStuff(tConn);
+            PreparedStatement ps;
             ResultSet rs2;
             while (rs.next()) {
                 writer.writeStartElement("t");
@@ -93,6 +90,14 @@ public class TransactionLoader {
         writer.writeEndDocument();
         writer.close();
         return os.toString("utf-8");
+    }
+
+    private ResultSet getCustomerResultSet_AndStuff(Connection tConn) throws SQLException {
+        PreparedStatement ps = tConn.prepareStatement("select customer_id, order_id, price, status, from transaction where status != 'cancelled'");
+        if (includeCancelled) {
+            ps = tConn.prepareStatement("select customer_id, order_id, price, status, from transaction");
+        }
+        return ps.executeQuery();
     }
 
     private Connection getConnection(String dbName) throws SQLException {
