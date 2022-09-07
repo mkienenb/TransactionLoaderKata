@@ -13,15 +13,11 @@ import java.net.URL;
 import java.sql.*;
 import java.util.Calendar;
 import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.Executor;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class TransactionLoaderTest {
-
-    private String xml_string1;
 
     @Test
     void shouldNoticeItemsAndNoCancelledInXmlStream() {
@@ -48,8 +44,7 @@ class TransactionLoaderTest {
         TransactionLoader tl = new TransactionLoader() {
             @Override
             Connection getConnection(String dbName) throws SQLException {
-                Connection ourConnection = null;
-                return ourConnection;
+                return null;
             }
 
             @Override
