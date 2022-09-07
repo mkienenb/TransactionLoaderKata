@@ -54,10 +54,8 @@ public class TransactionLoader {
             while (rs.next()) {
                 writer.writeStartElement("t");
                 writer.writeAttribute("s", rs.getString(4).toUpperCase());
-                ps = cConn.prepareStatement("select name from customer where id = ?");
                 int customerId = rs.getInt("customer_id");
-                ps.setInt(1, customerId);
-                ResultSet crs = ps.executeQuery();
+                ResultSet crs = findCustomerNameResultSetByCustomerId(cConn, customerId);
                 if (!crs.next()) {
                     writer.writeStartElement("n");
                     writer.writeCharacters("UNK");
@@ -89,6 +87,14 @@ public class TransactionLoader {
         writer.writeEndDocument();
         writer.close();
         return os.toString("utf-8");
+    }
+
+    ResultSet findCustomerNameResultSetByCustomerId(Connection cConn, int customerId) throws SQLException {
+        PreparedStatement ps;
+        ps = cConn.prepareStatement("select name from customer where id = ?");
+        ps.setInt(1, customerId);
+        ResultSet crs = ps.executeQuery();
+        return crs;
     }
 
     ResultSet getOrderItemResultSet_andStuff(Connection tConn, ResultSet rs) throws SQLException {
