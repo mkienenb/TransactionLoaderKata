@@ -37,7 +37,7 @@ class TransactionLoaderTest {
     }
 
     @Test
-    void testApplesauce() throws XMLStreamException, SQLException, UnsupportedEncodingException {
+    void emptyCustomerResultSet() throws XMLStreamException, SQLException, UnsupportedEncodingException {
         TransactionLoader tl = new TransactionLoader() {
             @Override
             Connection getConnection(String dbName) throws SQLException {
