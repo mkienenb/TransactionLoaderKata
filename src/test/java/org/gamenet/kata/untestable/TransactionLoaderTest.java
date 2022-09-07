@@ -46,6 +46,13 @@ class TransactionLoaderTest {
                 Connection ourConnection = null;
                 return ourConnection;
             }
+
+            @Override
+            ResultSet getCustomerResultSet_AndStuff(Connection tConn) throws SQLException {
+                ResultSet nullResultSet;
+                nullResultSet = null;
+                return nullResultSet;
+            }
         };
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         tl.applesauce(os);
