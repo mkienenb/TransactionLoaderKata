@@ -55,7 +55,8 @@ public class TransactionLoader {
                 writer.writeStartElement("t");
                 writer.writeAttribute("s", rs.getString(4).toUpperCase());
                 ps = cConn.prepareStatement("select name from customer where id = ?");
-                ps.setInt(1, rs.getInt("customer_id"));
+                int customerId = rs.getInt("customer_id");
+                ps.setInt(1, customerId);
                 ResultSet crs = ps.executeQuery();
                 if (!crs.next()) {
                     writer.writeStartElement("n");
