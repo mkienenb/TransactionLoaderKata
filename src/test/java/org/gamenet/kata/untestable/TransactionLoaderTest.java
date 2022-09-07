@@ -40,12 +40,12 @@ class TransactionLoaderTest {
     void emptyCustomerResultSet() throws XMLStreamException, SQLException, UnsupportedEncodingException {
         TransactionLoader tl = new TransactionLoader() {
             @Override
-            Connection getConnection(String dbName) throws SQLException {
+            Connection getConnection(String dbName) {
                 return null;
             }
 
             @Override
-            ResultSet getCustomerResultSet_AndStuff(Connection tConn) throws SQLException {
+            ResultSet getCustomerResultSet_AndStuff(Connection tConn) {
                 ResultSet emptyResultSet;
                 emptyResultSet = mock(ResultSet.class);
                 return emptyResultSet;
