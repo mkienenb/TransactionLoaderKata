@@ -72,6 +72,8 @@ class TransactionLoaderTest {
                 when(nonEmptyResultSet.next()).
                         thenReturn(true).
                         thenReturn(false);
+                when(nonEmptyResultSet.getString(4)).
+                        thenReturn("UnknownStatus");
                 return nonEmptyResultSet;
             }
         };
