@@ -90,7 +90,7 @@ public class TransactionLoader {
         return os.toString("utf-8");
     }
 
-    private ResultSet getOrderItemResultSet_andStuff(Connection tConn, ResultSet rs) throws SQLException {
+    ResultSet getOrderItemResultSet_andStuff(Connection tConn, ResultSet rs) throws SQLException {
         ResultSet rs2;
         PreparedStatement ps;
         ps = tConn.prepareStatement("select name, category from order_item where order_id = ?");
@@ -99,7 +99,7 @@ public class TransactionLoader {
         return rs2;
     }
 
-    private ResultSet getCustomerResultSet_AndStuff(Connection tConn) throws SQLException {
+    ResultSet getCustomerResultSet_AndStuff(Connection tConn) throws SQLException {
         PreparedStatement ps = tConn.prepareStatement("select customer_id, order_id, price, status, from transaction where status != 'cancelled'");
         if (includeCancelled) {
             ps = tConn.prepareStatement("select customer_id, order_id, price, status, from transaction");
@@ -107,7 +107,7 @@ public class TransactionLoader {
         return ps.executeQuery();
     }
 
-    private Connection getConnection(String dbName) throws SQLException {
+    Connection getConnection(String dbName) throws SQLException {
         return DriverManager.getConnection("jdbc:h2:mem:" + dbName + ";DB_CLOSE_DELAY=-1", "", "");
     }
 }
