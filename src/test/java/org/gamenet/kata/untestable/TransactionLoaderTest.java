@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class TransactionLoaderTest {
 
@@ -49,6 +50,29 @@ class TransactionLoaderTest {
                 ResultSet emptyResultSet;
                 emptyResultSet = mock(ResultSet.class);
                 return emptyResultSet;
+            }
+        };
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        tl.applesauce(os);
+        Approvals.verify(os.toString());
+    }
+
+    @Test
+    void NonEmptyCustomerResultSet() throws XMLStreamException, SQLException, UnsupportedEncodingException {
+        TransactionLoader tl = new TransactionLoader() {
+            @Override
+            Connection getConnection(String dbName) {
+                return null;
+            }
+
+            @Override
+            ResultSet getCustomerResultSet_AndStuff(Connection tConn) throws SQLException {
+                ResultSet nonEmptyResultSet;
+                nonEmptyResultSet = mock(ResultSet.class);
+                when(nonEmptyResultSet.next()).
+                        thenReturn(true).
+                        thenReturn(false);
+                return nonEmptyResultSet;
             }
         };
         ByteArrayOutputStream os = new ByteArrayOutputStream();
