@@ -6,7 +6,10 @@ import org.junit.jupiter.api.Test;
 import javax.xml.stream.XMLStreamException;
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.Map;
+import java.util.Properties;
+import java.util.concurrent.Executor;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -37,7 +40,13 @@ class TransactionLoaderTest {
 
     @Test
     void testApplesauce() throws XMLStreamException, SQLException, UnsupportedEncodingException {
-        TransactionLoader tl = new TransactionLoader();
+        TransactionLoader tl = new TransactionLoader() {
+            @Override
+            Connection getConnection(String dbName) throws SQLException {
+                Connection ourConnection = null;
+                return ourConnection;
+            }
+        };
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         tl.applesauce(os);
         Approvals.verify(os.toString());
